@@ -25,3 +25,12 @@ app.post('/notes', (req, res) => {
     saveNotes(notes);
     res.json(newNote);
 });
+
+app.listen(PORT, () => {
+    console.log(`App listening on PORT ${PORT}`);
+});
+
+function getNotes() {
+    const notes = fs.readFileSync(path.join(__dirname, 'db', 'db.json'), 'utf8');
+    return JSON.parse(data) || [];
+}
