@@ -34,3 +34,9 @@ function getNotes() {
     const notes = fs.readFileSync(path.join(__dirname, 'db', 'db.json'), 'utf8');
     return JSON.parse(data) || [];
 }
+function saveNotes(notes) {
+    fs.writeFileSync(path.join(__dirname, 'db.json'), JSON.stringify(notes, null, 2), 'utf8');
+}
+function generateUniqueId() {
+    return Math.floor(Math.random() * 1000000000);
+}
