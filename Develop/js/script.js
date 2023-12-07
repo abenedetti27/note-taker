@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const noteTitle = document.getElementById('noteTitle');
         const noteText = document.getElementById('noteText');
         
-        if (noteTitle.attributeStyleMap() !== '' && noteText.trim() !== '') {
+        if (noteTitle.value.trim() !== '' && noteText.trim() !== '') {
             const newNote = {
-                title: noteTitle,
-                text: noteText
+                title: noteTitle.value,
+                text: noteText.value
             };
             fetch('api/notes', {
                 method: 'POST',
