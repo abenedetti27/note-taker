@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const notesLink = document.getElementById('notesLink');
+    const noteTitle = document.getElementById('noteTitle');
     const saveButton = document.getElementById('saveButton');
     const clearButton = document.getElementById('clearButton');
     const newNoteButton = document.getElementById('newNoteButton');
@@ -42,7 +43,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.addEventListener('input', function () {
-        // Add your input handling code here
+        if (noteTitle.trim() !== '' || noteText.trim() !== '') {
+            saveButton.disabled = false;
+            clearButton.style.display = 'inline';
+        } else {
+            saveButton.disabled = true;
+            clearButton.style.display = 'none';
+        }
     });
 
     newNoteButton.addEventListener('click', function () {
