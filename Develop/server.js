@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 app.get('api/notes', (req, res) => {
@@ -26,10 +26,7 @@ app.post('api/notes', (req, res) => {
     notes.push(newNote);
     saveNotes(notes);
     res.json(newNote);
-});
 
-app.listen(PORT, () => {
-    console.log(`App listening on PORT ${PORT}`);
 });
 
 function getNotes() {
@@ -43,3 +40,6 @@ function generateUniqueId() {
     return Math.floor(Math.random() * 1000000000);
 }
 
+app.listen(PORT, () => {
+    console.log(`App listening on PORT ${PORT}`);
+});
