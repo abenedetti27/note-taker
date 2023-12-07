@@ -25,8 +25,7 @@ they are presented with empty fields to enter a new note title and the note’s 
 
 
 
-![Screenshot of Password Generator]![Screenshot](image.png)
-![Screenshot of generated password]![Screenshot](image-1.png)
+![Screenshot of New Note]![Screenshot](image.png)
 
 
 ```
