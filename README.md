@@ -27,44 +27,30 @@ they are presented with empty fields to enter a new note title and the note’s 
 
 ![Screenshot of New Note]![Screenshot](image.png)
 
-
+Code Snippet
 ```
-var generateBtn = document.querySelector("#generate");
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/notes.html'));
+});
 
-// Write password to the #password input
-function writePassword() {
-  function generatePassword() {
-    const lowerCase = "abcdefghijklmnopqrstuvwxyz";
-    const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const numbers = "0123456789";
-    const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
-    let passwordLength;
+app.get('/api/notes', (req, res) => {
+    const notes = getNotes();
+    res.json(notes);
+});
 
-    // Prompt for password length until a valid input is received
-    do {
-      passwordLength = parseInt(prompt("Enter password length (between 8 and 128 characters)"));
+app.post('/api/notes', (req, res) => {
+    const newNote = req.body;
+    newNote.id = generateUniqueId();
+    const notes = getNotes();
+    notes.push(newNote);
+    saveNotes(notes);
+    res.json(newNote);
 
-      if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
-        alert("Please enter a valid password length between 8 and 128 characters.");
-      }
-    } while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128);
-
-    let includeLowerCase, includeUpperCase, includeNumbers, includeSymbols;
-
-    // Prompt for character types until at least one type is selected
-    do {
-      includeLowerCase = confirm("Include lowercase characters?");
-      includeUpperCase = confirm("Include uppercase characters?");
-      includeNumbers = confirm("Include numbers?");
-      includeSymbols = confirm("Include symbols?");
-
-      if (!(includeLowerCase || includeUpperCase || includeNumbers || includeSymbols)) {
-        alert("Please select at least one character type.");
-      }
-    } while (!(includeLowerCase || includeUpperCase || includeNumbers || includeSymbols));
-
-
+});
 ```
 
 ## Usage <a name="usage"></a>
