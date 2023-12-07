@@ -43,11 +43,3 @@ function generateUniqueId() {
     return Math.floor(Math.random() * 1000000000);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const getStartedButton = document.getElementById('getStartedButton');
-});
-
-getStartedButton.addEventListener('click', function () {
-    console.log('button clicked');
-    window.location.href = 'notes.html';
-});
