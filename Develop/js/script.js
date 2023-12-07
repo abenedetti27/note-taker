@@ -53,7 +53,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     newNoteButton.addEventListener('click', function () {
-        // Add your new note handling code here
+        noteTitle.value = '';
+        noteText.value = '';
+        clearButton.style.display = 'none';
+        saveButton.disabled = true;
     });
 
     getStartedButton.addEventListener('click', function () {
