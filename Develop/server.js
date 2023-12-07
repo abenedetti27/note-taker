@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const fs = require('fs');
 const { get } = require('http');
@@ -12,12 +14,12 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/notes', (req, res) => {
+app.get('api/notes', (req, res) => {
     const notes = getNotes();
     res.json(notes);
 });
 
-app.post('/notes', (req, res) => {
+app.post('api/notes', (req, res) => {
     const newNote = req.body;
     newNote.id = generateUniqueId();
     const notes = getNotes();
@@ -40,3 +42,12 @@ function saveNotes(notes) {
 function generateUniqueId() {
     return Math.floor(Math.random() * 1000000000);
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const getStartedButton = document.getElementById('getStartedButton');
+});
+
+getStartedButton.addEventListener('click', function () {
+    console.log('button clicked');
+    window.location.href = 'notes.html';
+});
